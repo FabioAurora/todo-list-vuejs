@@ -1,13 +1,15 @@
 <template>
-  <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png" />
-  </div>
+  <main id="app">
+
+  </main>
 </template>
 
 <script>
-import HelloWorld from "./components/HelloWorld.vue";
-
+import Task from './components/Task.vue';
 export default {
   name: "App",
+  components: {
+    Task
+  },
 };
 </script>
