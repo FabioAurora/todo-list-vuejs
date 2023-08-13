@@ -15,26 +15,28 @@ export default new Vuex.Store({
           content: task,
           isDone: false,
         },
+        ...state.tasks,
       ];
     },
-    REMOVE_TODO_TASK(state, task) {
-      state.tasks.filter((item) => item.id !== task.id);
+    DELETE_TODO_TASK(state, task) {
+      state.tasks = state.tasks.filter(item => item.id !== task.id)
     },
     TOGGLE_TODO_TASK(state, task) {
       task.isDone = !task.isDone;
     },
   },
   actions: {
-    addTodo({ commit }, task) {
+    addTodoTask({ commit }, task) {
       commit("ADD_TODO_TASK", task);
     },
-    removeTodoTask({ commit }, task) {
-      commit("REMOVE_TODO_TASK", task);
+    deleteTodoTask({ commit }, task) {
+      commit("DELETE_TODO_TASK", task);
     },
-    toggleTodoTask({commit}, task) {
-      commit('TOGGLE_TODO_TASK', task)
-    }
+    toggleTodoTask({ commit }, task) {
+      commit("TOGGLE_TODO_TASK", task);
+    },
   },
-  getters: {},
+  getters: {
+  },
   modules: {},
 });

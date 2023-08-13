@@ -1,15 +1,20 @@
 <template>
-  <main id="app">
-
+  <main id="app" class="justify-center flex bg-slate-200 items-center h-screen">
+    <TodoTaskList />
   </main>
 </template>
 
 <script>
-import Task from './components/Task.vue';
+import TodoTaskList from './components/TodoTaskList.vue';
 export default {
   name: "App",
   components: {
-    Task
-  },
+    TodoTaskList,
+  }
 };
 </script>
+
+
+<!--
+  colors: #ECEFF8
+ -->

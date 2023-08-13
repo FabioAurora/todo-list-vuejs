@@ -7,9 +7,9 @@
 ## Live Demo
 
 ## CRUD Features
-* [ ] Option to create To Do task.
+* [x] Option to create To Do task.
 * [ ] Option to Update To Do task.
-* [ ] Option to Delete To Do task(confirmation modal / pop-up).
+* [x] Option to Delete To Do task(confirmation modal / pop-up).
 * [ ] Option to View all To Do tasks (only pending).
 
 ## Other Features
