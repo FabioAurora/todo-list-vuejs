@@ -5,30 +5,39 @@
         v-model="newTask"
         @keypress.enter="addTodoTask"
         type="text"
-        placeholder="My task..."
+        placeholder="New task..."
       />
-      <button
-        type="submit"
-        class="border border-indigo-500 bg-indigo-500 text-white rounded-md px-4 py-2 m-2 transition duration-500 ease select-none hover:bg-indigo-600 focus:outline-indigo-500"
-      >
-        Add task
-      </button>
+      <button type="submit">Add</button>
     </form>
-    <ul class="container w-96 h-64">
-      <li class="bg-slate-300" v-for="(task) in this.$store.state.tasks" :key="task.id">
-        {{ task.content }}
-        <button type="button" class="bg-blue-300" @click="deleteTodoTask(task)">Delete</button>
-      </li>
-    </ul>
+    <div>
+      <ul>
+        <li v-for="task in $store.state.tasks" :key="task.id" >
+          {{ task.content }}
+          <button @click="showConfirmModal(task)" type="button">Delete</button>
+        </li>
+      </ul>
+    </div>
+    <ConfirmDelete v-show="isModalVisible"
+    modalHeadline="Unexpected bad things will happen if you don’t read this!"
+    :deleteMessage="`This will permanently delete the (${title}) task, are you sure you want to delete it?`"
+    @deleteRecordEvent="deleteTodoTask"
+    @close="closeConfirmModal" />
   </section>
 </template>
 
 <script>
+import ConfirmDelete from './ConfirmDelete.vue';
 export default {
   name: "TodoTaskList",
+  components: {
+    ConfirmDelete,
+  },
   data() {
     return {
       newTask: "",
+      isModalVisible: false,
+      selectedTask: null,
+      title: ''
     };
   },
   methods: {
@@ -38,11 +47,18 @@ export default {
         this.newTask = "";
       }
     },
-    deleteTodoTask(task) {
-        this.$store.dispatch('deleteTodoTask', task)
-    }
+    deleteTodoTask() {
+      this.$store.dispatch("deleteTodoTask", this.selectedTask);
+      this.isModalVisible = false
+    },
+    showConfirmModal(task) {
+      this.isModalVisible = true;
+      this.selectedTask = task,
+      this.title = this.selectedTask.content
+    },
+    closeConfirmModal() {
+      this.isModalVisible = false;
+    },
   },
-  computed: {
-  }
 };
 </script>

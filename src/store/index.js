@@ -20,6 +20,7 @@ export default new Vuex.Store({
     },
     DELETE_TODO_TASK(state, task) {
       state.tasks = state.tasks.filter(item => item.id !== task.id)
+      /* state.tasks.splice(state.tasks.indexOf(task, 1)) */
     },
     TOGGLE_TODO_TASK(state, task) {
       task.isDone = !task.isDone;

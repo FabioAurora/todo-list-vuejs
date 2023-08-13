@@ -3,7 +3,7 @@ module.exports = {
   content: {
     relative: true,
     files: [
-      "./public/**/*.html", "./src/**/*.{vue,js,ts,jsx,tsx}"
+      "./public/**/*.html", "./src/**/*.{vue,js,ts,jsx,tsx}",
     ],
   },
   theme: {
@@ -14,7 +14,11 @@ module.exports = {
       display: ["Oswald"],
       body: ['"Open Sans"'],
     },
-    extend: {},
+    extend: {
+      colors: {
+        'bg-semi-75': 'rgba(0, 0, 0, 0.75)'
+      }
+    },
   },
   plugins: [
     require('@tailwindcss/forms')
