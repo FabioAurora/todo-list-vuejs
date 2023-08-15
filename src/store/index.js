@@ -9,18 +9,18 @@ export default new Vuex.Store({
     newTask: '',
   },
   mutations: {
-    ADD_TODO_TASK(state) {
+    ADD_TODO_TASK(state, task) {
       state.tasks = [
         {
           id: crypto.randomUUID(),
-          content: state.newTask,
+          content: task,
           isDone: false,
         },
         ...state.tasks,
       ];
     },
-    DELETE_TODO_TASK(state) {
-      state.tasks = state.tasks.filter(item => item.id !== state.newTask.id)
+    DELETE_TODO_TASK(state, task) {
+      state.tasks = state.tasks.filter(item => item.id !== task.id)
       /* state.tasks.splice(state.tasks.indexOf(task, 1)) */
     },
     TOGGLE_TODO_TASK(state, task) {
@@ -43,8 +43,6 @@ export default new Vuex.Store({
     updateTask({commit}, newTask) {
       commit('UPDATE_TASK', newTask)
     }
-  },
-  getters: {
   },
   modules: {},
 });
