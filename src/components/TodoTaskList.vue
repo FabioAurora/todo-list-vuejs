@@ -8,10 +8,11 @@
         <!-- *************************************** -->
         <div class="relative z-0 w-full mb-5">
           <BaseInput
-          v-model="newTask"
-          @keypress.enter="addTodoTask"
+            v-model="newTask"
+            @keypress.enter="addTodoTask"
             type="text"
-           required
+            ref="newTask"
+            required
           />
           <label
             class="absolute duration-300 top-3 -z-1 origin-0 text-gray-500"
@@ -33,6 +34,7 @@
           <input
             class="max-h-9 mb-4 overflow-hidden border-none"
             v-model="task.content"
+            @keyup.enter="focusInput"
             maxlength="26"
             title="Click to edit task"
           />
@@ -79,7 +81,7 @@ export default {
     addTodoTask() {
       if (this.newTask) {
         this.$store.dispatch("addTodoTask", this.newTask);
-        this.newTask = ''
+        this.newTask = "";
       }
     },
     deleteTodoTask() {
@@ -93,16 +95,19 @@ export default {
     closeConfirmModal() {
       this.isModalVisible = false;
     },
+    focusInput() {
+     this.$refs.newTask.focus()
+    },
   },
   computed: {
     newTask: {
       get() {
-        return this.$store.state.newTask
+        return this.$store.state.newTask;
       },
       set(value) {
-        this.$store.dispatch('updateTask', value)
-      }
-    }
-  }
+        this.$store.dispatch("updateTask", value);
+      },
+    },
+  },
 };
 </script>

@@ -30,6 +30,9 @@ export default {
     clearInput(e) {
       e.target.value = ''
     },
+    focus() {
+      this.$refs.input.focus()
+    }
   },
 };
 </script>
