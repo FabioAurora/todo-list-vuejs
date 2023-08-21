@@ -1,5 +1,6 @@
 import Vue from "vue";
 import Vuex from "vuex";
+import { uid } from "uid";
 
 Vue.use(Vuex);
 
@@ -10,25 +11,33 @@ export default new Vuex.Store({
   },
   mutations: {
     ADD_TODO_TASK(state, task) {
-      state.tasks = [
-        {
-          id: crypto.randomUUID(),
+      state.tasks.unshift({
+        id: uid(),
           content: task,
           isDone: false,
-        },
-        ...state.tasks,
-      ];
+          isEditing: false,
+      })
     },
     DELETE_TODO_TASK(state, task) {
       state.tasks = state.tasks.filter(item => item.id !== task.id)
       /* state.tasks.splice(state.tasks.indexOf(task, 1)) */
     },
-    TOGGLE_TODO_TASK(state, task) {
-      task.isDone = !task.isDone;
+    TOGGLE_COMPLETE_TASK(state, task) {
+          task.isDone = !task.isDone
+    },
+    TOGGLE_EDIT_TASK(state, task) {
+      task.isEditing = !task.isEditing
     },
     UPDATE_TASK(state, newTask) {
       state.newTask = newTask
-    }
+    },
+    EDIT_TASK(state, task) {
+      state.tasks.map(item => {
+        if(item.id === task.id) {
+          item.content = task.content
+        }
+      })
+    },
   },
   actions: {
     addTodoTask({ commit }, task) {
@@ -37,12 +46,22 @@ export default new Vuex.Store({
     deleteTodoTask({ commit }, task) {
       commit("DELETE_TODO_TASK", task);
     },
-    toggleTodoTask({ commit }, task) {
-      commit("TOGGLE_TODO_TASK", task);
+    toggleCompleteTask({ commit }, task) {
+      commit("TOGGLE_COMPLETE_TASK", task);
+    },
+    toggleEditTask({commit}, task) {
+      commit('TOGGLE_EDIT_TASK', task)
     },
     updateTask({commit}, newTask) {
       commit('UPDATE_TASK', newTask)
+    },
+    editTask({commit}, task) {
+      commit('EDIT_TASK', task)
     }
+  },
+  getters: {
+    tasks: state => state.tasks.filter((task) => !task.isDone),
+    completedTasks: state => state.tasks.filter(task => task.isDone),
   },
   modules: {},
 });

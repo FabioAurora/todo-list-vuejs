@@ -10,13 +10,13 @@
 * [x] Option to create To Do task.
 * [x] Option to Update To Do task.
 * [x] Option to Delete To Do task(confirmation modal / pop-up).
-* [ ] Option to View all To Do tasks (only pending).
+* [x] Option to View all To Do tasks (only pending).
 
 ## Other Features
-* [ ] Mark task as complete.
+* [X] Mark task as complete.
 * [ ] Duplicate the task.
 * [ ] Set due date for the task.
-* [ ] Option to view all the completed tasks.
+* [X] Option to view all the completed tasks.
 * [ ] Task if past due date and not marked as complete (highlight task in red).
 * [ ] demonstrate.
 
