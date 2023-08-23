@@ -1,16 +1,18 @@
 <template>
-  <div>
-    <h3 v-if="completed.length > 0">Completed({{ completed.length }})</h3>
-    <ul class="flex flex-col mt-6 gap-5">
-      <li
-        class="flex items-center justify-between gap-2.5 py-4 px-2.5 bg-slate-100 shadow-md"
-        v-for="task in completed"
-        :key="task.id"
-      >
-        {{ task.content }}
-      </li>
-    </ul>
-  </div>
+   <li class="flex items-center gap-2.5 py-4 px-2.5 bg-gray-500 shadow-md">
+    <input
+      :checked="task.isDone"
+      disabled
+      @change="toggleCompleteTask(task)"
+      class="h-5 w-5 cursor-pointer rounded-full border-0 bg-slate-200 text-gray-300 focus:ring-0 focus:outline-none"
+      type="checkbox"
+    />
+    <div class="flex-1">
+      <span @keypress.enter="editTask(task)"  class="text-gray-300" >{{
+        task.content
+      }}</span>
+    </div>
+  </li>
 </template>
 
 <script>
@@ -20,11 +22,12 @@ export default {
   components: {
     Icon,
   },
-  methods: {},
-  computed: {
-    completed() {
-      return this.$store.getters.completedTasks;
-    },
+  props: {
+    task: {
+      type: Object,
+      required: true
+    }
   },
+  methods: {},
 };
 </script>

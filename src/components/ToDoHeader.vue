@@ -1,5 +1,5 @@
 <template>
-    <header class="bg-slate-100">
+    <header class="">
         <nav class="lg:container py-6 px-4">
             <div class="flex items-center gap-2">
                 <img class="w-12" src="../assets/Vue_Logo.png" alt="">

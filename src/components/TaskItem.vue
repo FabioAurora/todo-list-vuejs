@@ -16,11 +16,11 @@
         @keyup.enter="toggleEditTask(task)"
         @input="inputValue"
       />
-      <span :class="{ 'line-through': task.isDone }" v-else>{{
+      <span @keypress.enter="editTask(task)" @dblclick="toggleEditTask(task)" :class="{ 'line-through text-gray-400': task.isDone }" v-else  >{{
         task.content
       }}</span>
     </div>
-    <div class="flex gap-1">
+    <div class="flex gap-2">
       <button v-if="task.isEditing" @click="toggleEditTask(task)">
         <Icon
           class="cursor-pointer"
@@ -33,7 +33,7 @@
         <Icon
           class="cursor-pointer"
           icon="ph:pencil-fill"
-          color="#41b080"
+          color="#22d3ee"
           width="22"
         />
       </button>

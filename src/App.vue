@@ -1,5 +1,5 @@
 <template>
-  <section id="app" class=" bg-slate-200">
+  <section id="app" class=" bg-slate-200 min-h-screen">
     <ToDoHeader class="w-full max-w-xl mx-auto" />
     <main class="flex flex-col w-full max-w-lg mx-auto py-10 px-4">
       <h1 class="text-3xl font-bold text-center mb-4">Create Task</h1>
