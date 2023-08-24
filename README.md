@@ -14,7 +14,7 @@
 
 ## Other Features
 * [X] Mark task as complete.
-* [ ] Duplicate the task.
+* [x] Duplicate the task.
 * [ ] Set due date for the task.
 * [X] Option to view all the completed tasks.
 * [ ] Task if past due date and not marked as complete (highlight task in red).

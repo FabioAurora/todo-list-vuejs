@@ -37,6 +37,11 @@
           width="22"
         />
       </button>
+
+      <button @click="duplicateTask(task)" v-show="!task.isEditing">
+        <Icon icon="mingcute:copy-fill" color="blue" width="22" />
+      </button>
+
       <button @click="showConfirmModal(task)">
         <Icon
           class="cursor-pointer"
@@ -45,6 +50,7 @@
           width="22"
         />
       </button>
+
     </div>
     <ConfirmDelete
         v-show="isModalVisible"
@@ -81,6 +87,12 @@ export default {
     };
   },
   methods: {
+    addTodoTask(task) {
+        this.$store.dispatch("addTodoTask", task);
+    },
+    duplicateTask(task) {
+      this.$store.dispatch('duplicateTask', task)
+    },
     toggleCompleteTask(task) {
       this.$store.dispatch("toggleCompleteTask", task);
     },

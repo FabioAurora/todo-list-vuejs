@@ -10,6 +10,14 @@ export default new Vuex.Store({
     newTask: "",
   },
   mutations: {
+    SORTED_TASKS(state) {
+      state.tasks.sort((taskA, taskB) => {
+        // pushing completed tasks to the bottom
+        if (!taskA.isDone && taskB.isDone) return -1;
+        if (taskA.isDone && taskB.isDone) return 0;
+        if (taskA.isDone && !taskB.isDone) return 1;
+      });
+    },
     ADD_TODO_TASK(state, task) {
       state.tasks.unshift({
         id: uid(),
@@ -18,12 +26,12 @@ export default new Vuex.Store({
         isEditing: false,
       });
     },
-    SORTED_TASKS(state) {
-      state.tasks.sort((taskA, taskB) => {
-        if (!taskA.isDone && taskB.isDone) return -1;
-        if (taskA.isDone && taskB.isDone) return 0;
-        if (taskA.isDone && !taskB.isDone) return 1;
-      });
+    DUPLICATE_TASK(state, task) {
+      const taskIndex = state.tasks.findIndex((item) => item.id === task.id);
+      if (taskIndex !== -1) {
+        const duplicatedTask = { ...state.tasks[taskIndex], id: uid() };
+        state.tasks.splice(taskIndex + 1, 0, duplicatedTask);
+      }
     },
     DELETE_TODO_TASK(state, task) {
       state.tasks = state.tasks.filter((item) => item.id !== task.id);
@@ -46,12 +54,15 @@ export default new Vuex.Store({
       });
     },
     CLEAR_TASKS(state) {
-      state.tasks = state.tasks.filter(task => !task.isDone)
+      state.tasks = state.tasks.filter((task) => !task.isDone);
     },
   },
   actions: {
     addTodoTask({ commit }, task) {
       commit("ADD_TODO_TASK", task);
+    },
+    duplicateTask({ commit }, task) {
+      commit("DUPLICATE_TASK", task);
     },
     deleteTodoTask({ commit }, task) {
       commit("DELETE_TODO_TASK", task);
