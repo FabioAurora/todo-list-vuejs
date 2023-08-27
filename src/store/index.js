@@ -8,6 +8,7 @@ export default new Vuex.Store({
   state: {
     tasks: [],
     newTask: "",
+    dueDate: 'not specified',
   },
   mutations: {
     SORTED_TASKS(state) {
@@ -24,7 +25,14 @@ export default new Vuex.Store({
         content: task,
         isDone: false,
         isEditing: false,
+        dueDate: state.dueDate,
       });
+    },
+    ADD_DUE_DATE(state, dueDate) {
+      if(dueDate === '') return
+      const options = { year: 'numeric', month: 'short', day: 'numeric' };
+      const date = new Date(dueDate).toLocaleDateString(undefined, options);
+      state.dueDate = date;
     },
     DUPLICATE_TASK(state, task) {
       const taskIndex = state.tasks.findIndex((item) => item.id === task.id);
@@ -46,6 +54,9 @@ export default new Vuex.Store({
     UPDATE_TASK(state, newTask) {
       state.newTask = newTask;
     },
+    UPDATE_DUE_DATE(state, dueDate) {
+      state.dueDate = dueDate;
+    },
     EDIT_TASK(state, task) {
       state.tasks.map((item) => {
         if (item.id === task.id) {
@@ -61,6 +72,9 @@ export default new Vuex.Store({
     addTodoTask({ commit }, task) {
       commit("ADD_TODO_TASK", task);
     },
+    addDueDate({ commit }, dueDate) {
+      commit("ADD_DUE_DATE", dueDate);
+    },
     duplicateTask({ commit }, task) {
       commit("DUPLICATE_TASK", task);
     },
@@ -75,6 +89,9 @@ export default new Vuex.Store({
     },
     updateTask({ commit }, newTask) {
       commit("UPDATE_TASK", newTask);
+    },
+    updateDueDate({ commit }, dueDate) {
+      commit("UPDATE_DUE_DATE", dueDate);
     },
     editTask({ commit }, task) {
       commit("EDIT_TASK", task);

@@ -15,6 +15,7 @@ import ToDoForm from "./components/ToDoForm.vue";
 import ToDoHeader from "./components/ToDoHeader.vue";
 import CompletedTasks from './components/CompletedTasks.vue';
 import CurrentTasks from './components/CurrentTasks.vue';
+import DatePicker from "./components/DatePicker.vue";
 
 export default {
   name: "app",
@@ -23,6 +24,7 @@ export default {
     ToDoForm,
     CompletedTasks,
     CurrentTasks,
+    DatePicker,
   },
   data() {
     return {
