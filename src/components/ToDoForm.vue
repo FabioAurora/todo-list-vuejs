@@ -86,12 +86,4 @@ export default {
 .input-error {
   @apply border-red-500;
 }
-
-input[type="date"] {
-  display: block;
-  appearance: textfield;
-  -webkit-appearance: textfield;
-  -moz-appearance: textfield;
-  min-height: 1.2em;
-}
 </style>
