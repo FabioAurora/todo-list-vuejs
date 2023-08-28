@@ -54,9 +54,6 @@ export default new Vuex.Store({
     UPDATE_TASK(state, newTask) {
       state.newTask = newTask;
     },
-    UPDATE_DUE_DATE(state, dueDate) {
-      state.dueDate = dueDate;
-    },
     EDIT_TASK(state, task) {
       state.tasks.map((item) => {
         if (item.id === task.id) {
@@ -89,9 +86,6 @@ export default new Vuex.Store({
     },
     updateTask({ commit }, newTask) {
       commit("UPDATE_TASK", newTask);
-    },
-    updateDueDate({ commit }, dueDate) {
-      commit("UPDATE_DUE_DATE", dueDate);
     },
     editTask({ commit }, task) {
       commit("EDIT_TASK", task);

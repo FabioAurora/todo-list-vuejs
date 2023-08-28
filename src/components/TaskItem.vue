@@ -1,6 +1,6 @@
 <template>
   <li :class="[`
-  flex items-center gap-2.5 py-4 px-2.5 bg-slate-100 shadow-md`, {'bg-red-400': testing < currentDay && !task.isDone}]">
+  flex items-center gap-2.5 py-4 px-2.5 bg-slate-100 shadow-md`,{taskNotCompletedOnTime}]">
     <input
       :checked="task.isDone"
       @change="toggleCompleteTask(task)"
@@ -18,24 +18,24 @@
         @input="inputValue"
       />
 
-      <span @keypress.enter="editTask(task)" @dblclick="toggleEditTask(task)" :class="{ 'line-through text-gray-400': task.isDone }" v-else  >{{
+      <span @keypress.enter="editTask(task)" @dblclick="toggleEditTask(task)" :class="[taskIsDoneClass, taskNotCompletedOnTime]" v-else  >{{
         task.content
       }}</span>
     </div>
     <div class="flex gap-2">
 
       <div class="mr-2">
-        <div v-if="!task.isDone && testing < currentDay">
-          <p class="text-xs text-gray-400" >passed due date
+        <div v-if="!task.isDone && dueDate < currentDay">
+          <p :class="taskNotCompletedOnTime" class="text-xs" >overdue
           </p>
         </div>
 
-        <div v-else-if="task.isDone && testing < currentDay">
+        <div v-else-if="task.isDone && dueDate < currentDay">
           <p class="text-xs text-gray-400">completed after due date
           </p>
         </div>
 
-        <div v-else-if="task.isDone && testing > currentDay">
+        <div v-else-if="task.isDone && dueDate > currentDay">
           <p class="text-xs text-gray-400">completed
           </p>
         </div>
@@ -107,7 +107,7 @@ export default {
       selectedTask: null,
       title: "",
       currentDay: new Date(),
-      testing: new Date(this.task.dueDate),
+      dueDate: new Date(this.task.dueDate),
       differenceMessage: ''
     };
   },
@@ -142,25 +142,14 @@ export default {
 
   },
   computed: {
-    compareDates() {
-      const selectedDate1 = new Date(this.currentDay);
-      const selectedDate2 = new Date(this.testing);
-
-      const differenceInMilliseconds = selectedDate2.getTime() - selectedDate1.getTime();
-      const differenceInDays = Math.ceil(differenceInMilliseconds / (1000 * 60 * 60 * 24));
-      if(differenceInDays === 0) return
-
-      this.differenceMessage = `The difference is ${differenceInDays} day(s).`;
-    }
+    taskIsDoneClass() {
+      return [
+      { 'line-through text-gray-400': this.task.isDone }
+      ]
+    },
+    taskNotCompletedOnTime() {
+      return {'text-red-500 font-bold': this.dueDate <= this.currentDay && !this.task.isDone}
+    },
   },
-  watch: {
-    compareDates(newDifference) {
-      if (newDifference === 1) {
-        this.differenceMessage = `1 day left.`;
-      } else {
-        this.differenceMessage = `The difference is ${newDifference} days.`;
-      }
-    }
-  }
 };
 </script>

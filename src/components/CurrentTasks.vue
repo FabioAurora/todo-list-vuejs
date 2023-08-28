@@ -125,7 +125,7 @@ export default {
     },
     buttonClass(isActive) {
       return [
-        isActive ? "hover:bg-slate-100 text-sky-500 font-bold text-xs border border-gray-300" : "hover:bg-slate-100 text-gray-500 font-bold text-xs",
+        isActive ? "hover:bg-slate-100 text-green-500 font-bold text-xs border border-gray-300" : "hover:bg-slate-100 text-gray-500 font-bold text-xs",
       ];
     }
   },
