@@ -43,7 +43,7 @@
         <span class="text-sm">{{ task.dueDate }}</span>
       </div>
 
-      <button v-if="task.isEditing" @click="toggleEditTask(task)">
+      <button v-if="task.isEditing" @click="editTask(task)">
         <Icon
           class="cursor-pointer"
           icon="ph:check-circle"
@@ -124,6 +124,7 @@ export default {
     editTask(task) {
       task.content = this.newValue;
       this.$store.dispatch("editTask", task);
+      this.$store.dispatch("toggleEditTask", task);
     },
     inputValue(e) {
       return (this.newValue = e.target.value);
