@@ -1,5 +1,9 @@
 <template>
-  <button :type="type" class="px-3 border-0"><slot></slot></button>
+  <button
+  class="py-2 px-2"
+    :type="type"
+    @click="$emit('click')"
+  ><slot></slot></button>
 </template>
 
 <script>
@@ -8,7 +12,7 @@ export default {
   props: {
     type: {
       type: String,
-      required: true,
+      required: true
     },
   },
 };

@@ -1,6 +1,5 @@
 <template>
   <form @submit.prevent="addTodoTask">
-    <!-- *************************************** -->
     <div
       class="flex transition-all duration-200 ease-linear border-2 border-slate-400 focus-within:shadow-sm"
       :class="{ 'input-error': this.invalid }"
@@ -19,20 +18,19 @@
         name="date"
         type="date"
         onfocus="this.showPicker()"
-        class="cursor-pointer appearance-none bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-52 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+        class="cursor-pointer appearance-none bg-gray-50 border border-gray-300 text-gray-900 text-sm focus:ring-blue-500 focus:border-blue-500 block w-52 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
       />
 
       <BaseButton type="submit">Add</BaseButton>
     </div>
+
     <p
       v-if="invalid"
       class="flex items-center text-sm justify-center gap-2 mt-6 text-red-400"
     >
-      <Icon icon="bx:error" color="#ef4444" width="20" />
+      <Icon icon="bx:error" class="text-red-500" width="20" />
       {{ errMsg }}
-      {{ currentDay }}
     </p>
-    <!-- *********************** -->
   </form>
 </template>
 
@@ -60,7 +58,7 @@ export default {
         this.$store.dispatch("addDueDate", this.dueDate);
         this.$store.dispatch("addTodoTask", this.newTask);
         this.newTask = "";
-        this.dueDate = ''
+        this.dueDate = "";
         return;
       }
       this.invalid = true;

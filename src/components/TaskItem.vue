@@ -1,6 +1,6 @@
 <template>
   <li :class="[`
-  flex items-center gap-2.5 py-4 px-2.5 bg-slate-100 shadow-md`, {'bg-red-300': testing < currentDay && !task.isDone}]">
+  flex items-center gap-2.5 py-4 px-2.5 bg-slate-100 shadow-md`, {'bg-red-400': testing < currentDay && !task.isDone}]">
     <input
       :checked="task.isDone"
       @change="toggleCompleteTask(task)"
@@ -24,15 +24,23 @@
     </div>
     <div class="flex gap-2">
 
-      <div class="mr-2" v-show="!task.isDone">
-        <p class="text-xs text-gray-400" v-if="!task.isDone && testing < currentDay">due by</p>
-        <p class="text-xs text-gray-400" v-else-if="task.isDone && testing < currentDay">passed due date</p>
+      <div class="mr-2">
+        <div v-if="!task.isDone && testing < currentDay">
+          <p class="text-xs text-gray-400" >passed due date
+          </p>
+        </div>
+
+        <div v-else-if="task.isDone && testing < currentDay">
+          <p class="text-xs text-gray-400">completed after due date
+          </p>
+        </div>
+
+        <div v-else-if="task.isDone && testing > currentDay">
+          <p class="text-xs text-gray-400">completed
+          </p>
+        </div>
         <p class="text-xs text-gray-400" v-else>due date</p>
         <span class="text-sm">{{ task.dueDate }}</span>
-      </div>
-
-      <div class="mr-2" v-show="task.isDone">
-        <p class="text-xs text-green-500">Completed on time</p>
       </div>
 
       <button v-if="task.isEditing" @click="toggleEditTask(task)">
