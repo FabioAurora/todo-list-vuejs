@@ -92,5 +92,6 @@ input[type="date"] {
   appearance: textfield;
   -webkit-appearance: textfield;
   -moz-appearance: textfield;
+  min-height: 1.2em;
 }
 </style>
