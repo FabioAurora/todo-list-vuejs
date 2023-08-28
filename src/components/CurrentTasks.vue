@@ -11,7 +11,7 @@
               :key="task.id"
             />
           </div>
-
+          <!-- Rendering task items based on the currently selected display mode -->
           <div v-else-if="isPending">
             <TaskItem
               class="mt-2"
@@ -35,6 +35,7 @@
 
         <div class="flex flex-col gap-3 sm:flex-row justify-between items-center  py-2">
           <div class="inline-flex">
+            <!-- Display buttons to toggle the task display mode -->
             <BaseButton
             type="button"
               :class="buttonClass(isCurrent)"
@@ -61,6 +62,7 @@
               <sup class=" text-green-700">{{completedTasks.length}}</sup>
             </BaseButton>
           </div>
+          <!-- Button to clear completed tasks -->
           <BaseButton
           type="button"
             class="hover:bg-slate-300 text-slate-600 font-semibold hover:text-slate-700 border border-slate-700 hover:border-transparent rounded text-xs"
@@ -70,6 +72,7 @@
           </BaseButton>
         </div>
       </ul>
+      <!-- Display message if there are no tasks added -->
       <p class="flex items-center justify-center gap-2 mt-6" v-else>
         <Icon
           icon="streamline:interface-arrows-bend-down-right-1-arrow-bend-curve-change-direction-right-to-down"

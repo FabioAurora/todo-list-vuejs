@@ -2,7 +2,7 @@
   <form @submit.prevent="addTodoTask">
     <div
       class="flex transition-all duration-200 ease-linear border-2 border-slate-400 focus-within:shadow-sm"
-      :class="{ 'input-error': this.invalid }"
+      :class="{ 'input-error': isInvalid }"
     >
       <input
         v-model="newTask"
@@ -12,6 +12,7 @@
         class="w-full py-3 px-2 border-0 focus:outline-none focus-within:shadow-md"
       />
 
+      <!-- Due date input -->
       <input
         v-model="dueDate"
         id="date"
@@ -24,12 +25,13 @@
       <BaseButton type="submit">Add</BaseButton>
     </div>
 
+    <!-- Error message for invalid input -->
     <p
-      v-if="invalid"
+      v-if="isInvalid"
       class="flex items-center text-sm justify-center gap-2 mt-6 text-red-400"
     >
       <Icon icon="bx:error" class="text-red-500" width="20" />
-      {{ errMsg }}
+      {{ errorMessage }}
     </p>
   </form>
 </template>
@@ -45,24 +47,25 @@ export default {
   },
   data() {
     return {
-      errMsg: "",
-      invalid: false,
+      errorMessage: "",
+      isInvalid: false,
       dueDate: "",
     };
   },
   methods: {
     addTodoTask() {
-      this.invalid = false;
-      this.errMsg = "";
-      if (this.newTask !== "") {
+      this.isInvalid = false;
+      this.errorMessage = "";
+
+      if (this.newTask.trim() !== "") {
         this.$store.dispatch("addDueDate", this.dueDate);
         this.$store.dispatch("addTodoTask", this.newTask);
         this.newTask = "";
         this.dueDate = "";
         return;
       }
-      this.invalid = true;
-      this.errMsg = "Cannot add an empty task value";
+      this.isInvalid = true;
+      this.errorMessage = "Cannot add an empty task value";
     },
   },
   computed: {
@@ -72,14 +75,6 @@ export default {
       },
       set(value) {
         this.$store.dispatch("updateTask", value);
-      },
-      dueDate: {
-        get() {
-          return this.$store.state.dueDate;
-        },
-        set(dueDate) {
-          this.$store.dispatch("updateDueDate", dueDate);
-        },
       },
     },
   },
