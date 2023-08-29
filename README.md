@@ -1,10 +1,40 @@
 # todo-list-vuejs
 
-> A simple to do list app built with VueJS, Vuex &amp; Tailwind CSS
+> A  toDo list app built with VueJS, Vuex &amp; Tailwind CSS
 
 ![Screenshot](./screenshot1.png)
 
 ## Live Demo
+
+## Table of Contents
+
+- [Usage](#usage)
+- [Getting Started](#getting-started)
+- [CRUD Features](#crud-features)
+- [Technologies Used](#technologies-used)
+
+
+## Usage
+1. To add a task you can add a name to the task and a due date, add  the task by clicking Add button or by pressing enter key.
+2. User can edit each task by double clicking on the task or by clicking on the edit button.
+3. Mark tasks as completed by checking the checkbox (text will be red if overdue).
+4. Delete tasks by clicking trash/bin icon, this will activate a pop up to confirm deletion.
+5. Can view different task lists by clicking the button at the bottom, can view All, Pending or completed tasks.
+6. Can clear completed tasks by clicking the clear completed button.
+
+## Getting Started
+1. Clone or fork the repository: `https://github.com/FabioAurora/todo-list-vuejs.git`
+2. Navigate to the project directory: `cd todo-list-vuejs`
+3. Install dependencies: `npm install`
+4. Start the development server: `npm run serve`
+5. App will run at `http://localhost:8080/` (or another port if indicated).
+
+## Technologies Used
+- Vuejs 2
+- Vuex for state management
+- tailwind CSS for styling
+- Javascript (ES6+)
+- -Unit and component testing
 
 ## CRUD Features
 * [x] Option to create To Do task.
@@ -19,29 +49,6 @@
 * [X] Option to view all the completed tasks.
 * [x] Task if past due date and not marked as complete (highlight task in red).
 * [ ] demonstrate.
-
-### Things to note
-- VueJS 2 must be used.
-
-- VueX must be used.
-
-- TailwindCSS must be used.
-
-- Do form validations.
-
-- Demonstrate mobile responsive UI/UX design.
-
-- Please provide brief "read me" describing how to run your application.
-
-## Project setup
-```
-npm install
-```
-
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
 
 ### Compiles and minifies for production
 ```

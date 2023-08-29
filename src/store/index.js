@@ -6,7 +6,29 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
   state: {
-    tasks: [],
+    tasks: [
+      {
+        id: uid(),
+        content: 'Learn Vue.js 2',
+        isDone:true,
+        isEditing: false,
+        dueDate: '',
+      },
+      {
+        id: uid(),
+        content: 'Learn Vue.js 3',
+        isDone:false,
+        isEditing: false,
+        dueDate: '02 Oct 2023',
+      },
+      {
+        id: uid(),
+        content: 'Learn unit testing',
+        isDone:false,
+        isEditing: false,
+        dueDate: '26 Aug 2023',
+      },
+    ],
     newTask: "",
     dueDate: 'not specified',
   },

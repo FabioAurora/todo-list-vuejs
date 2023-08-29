@@ -14,6 +14,7 @@
     "flowbite": "^1.8.1",
     "postcss": "^8",
     "tailwindcss": "^3",
+    "travis": "^0.1.1",
     "uuid": "^9.0.0",
     "vue": "^2.6.14",
     "vuejs-datepicker": "^1.6.2",
