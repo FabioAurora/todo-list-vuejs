@@ -2,10 +2,8 @@
 
 > A  toDo list app built with VueJS, Vuex &amp; Tailwind CSS
 
-![Screenshot](./screenshot1.png)
-
 ## Live Demo
-
+https://fabioaurora.github.io/todo-list-vuejs/
 ## Table of Contents
 
 - [Usage](#usage)
